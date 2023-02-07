@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 db.connect((err) => {
-  if (err) throw error;
+  // if (err) throw error;
 
   console.log('Database Connnected');
 
