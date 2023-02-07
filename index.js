@@ -24,7 +24,7 @@ db.connect((err) => {
     const sql = `SELECT * FROM book`;
 
     db.query(sql, (err, fields) => {
-      if (err) throw error;
+      // if (err) throw error;
 
       const books = JSON.parse(JSON.stringify(fields));
 
