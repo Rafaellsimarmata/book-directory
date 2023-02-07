@@ -1,11 +1,11 @@
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
-  host: 'containers-us-west-165.railway.app',
-  user: 'root',
-  password: '0W3XaiFSCMfPoNCD31N9',
-  database: 'railway',
-  port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
 module.exports = db;
