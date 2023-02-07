@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 db.connect((err) => {
-  // if (err) throw error;
+  if (err) throw error;
 
   console.log('Database Connnected');
 
@@ -24,7 +24,7 @@ db.connect((err) => {
     const sql = `SELECT * FROM book`;
 
     db.query(sql, (err, fields) => {
-      // if (err) throw error;
+      if (err) throw error;
 
       const books = JSON.parse(JSON.stringify(fields));
 
@@ -44,7 +44,7 @@ app.post('/addbook', (req, res) => {
   const sql = `INSERT INTO book(id, nib, name, genre, author) VALUES ('','${req.body.nib}','${req.body.name}','${req.body.genre}','${req.body.author}')`;
 
   db.query(sql, (err, fields) => {
-    // if (err) throw err;
+    if (err) throw err;
 
     if (fields?.affectedRows) {
       const data = {
@@ -62,7 +62,7 @@ app.get('/delete/:id', (req, res) => {
   const sql = `DELETE FROM book WHERE id = ${req.params.id}`;
 
   db.query(sql, (err, fields) => {
-    // if (err) throw error;
+    if (err) throw error;
 
     console.log(fields);
     res.redirect('/');
@@ -75,7 +75,7 @@ app.post('/search', (req, res) => {
   const sql = `SELECT * FROM book WHERE id LIKE '%${req.body.search}%' OR nib LIKE '%${req.body.search}%' OR name LIKE '%${req.body.search}%' OR genre LIKE '%${req.body.search}%' OR author LIKE '%${req.body.search}%'`;
 
   db.query(sql, (err, fields) => {
-    // if (err) throw err;
+    if (err) throw err;
 
     const books = JSON.parse(JSON.stringify(fields));
 
@@ -100,7 +100,7 @@ app.post('/updatebook/:id', (req, res) => {
   const sql = `UPDATE book SET nib='${req.body.nib}',name='${req.body.name}',genre='${req.body.genre}',author='${req.body.author}' WHERE id = ${req.params.id}`;
 
   db.query(sql, (err, fields) => {
-    // if (err) throw err;
+    if (err) throw err;
     console.log(fields);
     res.redirect('/');
   });
